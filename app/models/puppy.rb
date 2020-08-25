@@ -1,2 +1,5 @@
 class Puppy < ApplicationRecord
+
+
+    
 end
