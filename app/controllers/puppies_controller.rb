@@ -13,7 +13,7 @@ class PuppiesController < ApplicationController
     def create
         @puppy = Puppy.new(puppy_params)
         if @puppy.save
-            render json: @puppy, status: :created, location: @puppy
+            render json: @puppy, status: :created
         else
             render json: @puppy.errors, status: :unprocessable_entity
         end
