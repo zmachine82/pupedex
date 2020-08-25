@@ -6,8 +6,8 @@ class PuppiesController < ApplicationController
         render json: @puppies
     end
 
-    def show(puppy_params)
-        render json: @puppy
+    def show
+        render json: {puppy: @puppy}
     end
 
     def create
@@ -19,9 +19,9 @@ class PuppiesController < ApplicationController
         end
     end
 
-    def update(puppy_params)
+    def update
         if @puppy.update(puppy_params)
-            render json: @puppy
+            render json: @puppy 
         else
             render json: @puppy.errors, status: :unprocessable_entity
         end
@@ -34,7 +34,7 @@ class PuppiesController < ApplicationController
     private
 
     def set_puppy
-        @puppy = Puppy.new(params(:id))
+        @puppy = Puppy.find(params[:id])
     end
 
     def puppy_params
