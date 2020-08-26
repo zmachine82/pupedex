@@ -1,5 +1,6 @@
 class PuppiesController < ApplicationController
     before_action :set_puppy, only:[:show, :update, :destroy]
+    skip_before_action :authenticate
 
     def index
         @puppies = Puppy.all
