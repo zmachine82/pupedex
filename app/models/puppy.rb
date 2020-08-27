@@ -1,4 +1,3 @@
 class Puppy < ApplicationRecord
-belongs_to :name
-#belongs_to :breed
+    attr_accessor :name, :age, :size, :breed
 end

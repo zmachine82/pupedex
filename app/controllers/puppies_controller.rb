@@ -1,9 +1,9 @@
 class PuppiesController < ApplicationController
     def index
         @puppies = Puppy.all
-        render json: @puppies, include: [name, age, size]
+        render json: @puppies, include: [name, age, size, breed]
     end
-    
+
     def show
         render json: @puppy
     end
@@ -34,6 +34,6 @@ class PuppiesController < ApplicationController
     end
 
     def puppy_params
-        params.requires(:puppy).permit(:name, :age, :size)
+        params.requires(:puppy).permit(:name, :age, :size, :breed)
     end
 end
