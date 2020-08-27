@@ -8,7 +8,7 @@ class PuppiesController < ApplicationController
     end
 
     def show
-        @reviews = Review.where(movie_id: params[:id])   
+        @reviews = Review.where(puppy_id: params[:id])   
         render json: { puppy: @puppy, review: @review }                                                                                 
     end
 
