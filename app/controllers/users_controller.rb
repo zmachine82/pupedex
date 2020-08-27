@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     
     def login
       render json: {error: "User not authenticated" }, status: 401 and return unless @user = UsersService.login(params[:email], params[:password])
-      render json: @user.profile
+      render json: @user.profile, status: :ok
     end 
   
     def create 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
   
     def logout
-      render json: { error: "There was a problem logging out" }, status: :unprocessable_entity and return unless UserService.logout(@current_user)
+      render json: { error: "There was a problem logging out" }, status: :unprocessable_entity and return unless UsersService.logout(@current_user)
       render json: { success: "You have been logged out" }, status: :ok
     end
   
