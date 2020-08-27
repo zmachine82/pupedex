@@ -4,12 +4,12 @@ class PuppiesController < ApplicationController
 
     def index
         @puppies = Puppy.all
-        render json: @puppies
+        render json: { puppies: @puppies, reviews: @reviews }
     end
 
     def show
         @reviews = Review.where(puppy_id: params[:id])   
-        render json: { puppy: @puppy, review: @review }                                                                                 
+        render json: { puppy: @puppy, reviews: @reviews }                                                                                 
     end
 
     def create
