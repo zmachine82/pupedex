@@ -1,6 +1,6 @@
 class PuppiesController < ApplicationController
     before_action :set_puppy, only:[:show, :update, :destroy]
-    skip_before_action :authenticate
+    skip_before_action :authenticate, only:[:index, :show]
 
     def index
         @puppies = Puppy.all
@@ -8,7 +8,8 @@ class PuppiesController < ApplicationController
     end
 
     def show
-        render json: {puppy: @puppy}
+        @reviews = Review.where(movie_id: params[:id])   
+        render json: { puppy: @puppy, review: @review }                                                                                 
     end
 
     def create
