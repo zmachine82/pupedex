@@ -1,9 +1,0 @@
-class PuppiesController < ApplicationController
-
-
-
-
-
-
-
-end
