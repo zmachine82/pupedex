@@ -23,7 +23,7 @@ gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+ gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -33,7 +33,10 @@ end
 group :development do
   gem 'sqlite3', '~> 1.4'
 end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1891a7b4715d281d5cb6ea5913138f8244bc5a3e
 group :production do
   gem 'pg'
 end
