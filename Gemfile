@@ -33,10 +33,6 @@ end
 group :development do
   gem 'sqlite3', '~> 1.4'
 end
-<<<<<<< HEAD
-
-=======
->>>>>>> 1891a7b4715d281d5cb6ea5913138f8244bc5a3e
 group :production do
   gem 'pg'
 end
