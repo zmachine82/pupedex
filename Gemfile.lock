@@ -84,9 +84,12 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
+    pg (1.2.3-x64-mingw32)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.2)
@@ -142,13 +145,15 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
+  pg
   puma (~> 4.1)
+  rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
   sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.6.3
 
 BUNDLED WITH
    2.1.4
