@@ -2,7 +2,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     has_many :reviews
     has_secure_password
-
+    
     def generate_token!
         update_attribute :token, AccessToken.new(self).generate
     end
