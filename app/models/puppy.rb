@@ -1,3 +1,3 @@
 class Puppy < ApplicationRecord
-    attr_accessor :name, :age, :size, :breed
+    has_many :reviews, dependent: :destroy
 end
