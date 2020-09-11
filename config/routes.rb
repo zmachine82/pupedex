@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'puppies', to: "puppies#show"
   post 'puppies', to: "puppies#update"
   post 'puppies', to: "puppies#destroy"
+  
 end
 
