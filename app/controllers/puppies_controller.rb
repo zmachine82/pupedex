@@ -4,12 +4,21 @@ class PuppiesController < ApplicationController
 
     def index
         @puppies = Puppy.all
-        render json: { puppies: @puppies, reviews: @reviews }
+        render json: { puppies: @puppies }
     end
 
     def show
-        @reviews = Review.where(puppy_id: params[:id])   
-        render json: { puppy: @puppy, reviews: @reviews }                                                                                 
+        @reviews = Review.where(puppy_id: params[:id]) 
+        reviewArray = []
+        @reviews.each do |r|
+            reviewArray.push(
+            {
+                body: r.body,
+                username: r.user.nickname,
+                id: r.id
+            })
+        end
+        render json: { puppy: @puppy, reviews: reviewArray }                                                                                 
     end
 
     def create
