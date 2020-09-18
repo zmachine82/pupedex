@@ -7,14 +7,14 @@ class ApplicationController < ActionController::API
     end
 
     def authenticate_token
-        authenticate_with_http_token do |token,options|
+        authenticate_with_http_token do |token|
          @current_user = User.find_by( token: token )
          @current_user
         end
     end
 
     def render_unauthorized
-       logger.debug "***UNAUTHORIZED REQUEST: #{request.env('HTTP_AUTHORIZATION')} ***"
+    #    logger.debug "***UNAUTHORIZED REQUEST: #{request.env('HTTP_AUTHORIZATION')} ***"
        self.headers['WWW-Authenticate'] = 'Token realm ="Application"'
        render json: {error: "Bad Credentials"}, status: 401
     end
