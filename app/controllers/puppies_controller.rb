@@ -8,17 +8,18 @@ class PuppiesController < ApplicationController
     end
 
     def show
-        @reviews = Review.where(puppy_id: params[:id]) 
+        @reviews = Review.where(puppy_id: params[:id])
         reviewArray = []
         @reviews.each do |r|
             reviewArray.push(
             {
                 body: r.body,
                 username: r.user.nickname,
-                id: r.id
+                id: r.id,
+                rating: r.rating
             })
         end
-        render json: { puppy: @puppy, reviews: reviewArray }                                                                                 
+        render json: { puppy: @puppy, reviews: reviewArray, averageRating: Review.where(puppy_id: params[:id]).average(:rating)  }                                                                                 
     end
 
     def create

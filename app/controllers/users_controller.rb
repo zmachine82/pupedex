@@ -11,6 +11,14 @@ class UsersController < ApplicationController
       render json: { error: "There was a problem saving your user." }, status: :unprocessable_entity and return unless @user
       render json: @user.profile, status: :ok
     end
+
+    def update
+      if @current_user.update(user_params)
+          render json: @current_user.profile 
+      else
+          render json: @current_user.errors, status: :unprocessable_entity
+      end
+    end
   
     def logout
       render json: { error: "There was a problem logging out" }, status: :unprocessable_entity and return unless UsersService.logout(@current_user)
@@ -19,6 +27,12 @@ class UsersController < ApplicationController
   
     def me
       render json: @current_user.profile, status: :ok
+    end
+
+    private 
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :image, :nickname)
     end
   
   end

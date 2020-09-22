@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :users, defaults: {format: :json} do
     post :login 
     post :create
+    put :update
     delete :logout
     get :me
     end

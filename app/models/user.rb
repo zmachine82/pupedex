@@ -14,6 +14,7 @@ class User < ApplicationRecord
             last_name: last_name,
             nickname: nickname,
             token: token,
+            image: image,
             email: email
         }
     end
