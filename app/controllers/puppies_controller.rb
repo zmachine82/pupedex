@@ -19,7 +19,7 @@ class PuppiesController < ApplicationController
                 rating: r.rating
             })
         end
-        render json: { puppy: @puppy, reviews: reviewArray, averageRating: Review.where(puppy_id: params[:id]).average(:rating)  }                                                                                 
+        render json: { puppy: @puppy, reviews: reviewArray, averageRating: Review.where(puppy_id: params[:id]).average(:rating).round(2)  }                                                                                 
     end
 
     def create
