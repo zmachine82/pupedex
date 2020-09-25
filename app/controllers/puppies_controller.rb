@@ -16,10 +16,15 @@ class PuppiesController < ApplicationController
                 body: r.body,
                 username: r.user.nickname,
                 id: r.id,
-                rating: r.rating
+                rating: r.rating,
+                created_at: r.created_at
             })
         end
-        render json: { puppy: @puppy, reviews: reviewArray, averageRating: Review.where(puppy_id: params[:id]).average(:rating).round(2)  }                                                                                 
+        averageRating = Review.where(puppy_id: params[:id]).average(:rating)
+        if averageRating
+            averageRating = averageRating.round(2)
+        end
+        render json: { puppy: @puppy, reviews: reviewArray, averageRating: averageRating   }                                                                                 
     end
 
     def create
