@@ -8,23 +8,7 @@ class PuppiesController < ApplicationController
     end
 
     def show
-        @reviews = Review.where(puppy_id: params[:id])
-        reviewArray = []
-        @reviews.each do |r|
-            reviewArray.push(
-            {
-                body: r.body,
-                username: r.user.nickname,
-                id: r.id,
-                rating: r.rating,
-                created_at: r.created_at
-            })
-        end
-        averageRating = Review.where(puppy_id: params[:id]).average(:rating)
-        if averageRating
-            averageRating = averageRating.round(2)
-        end
-        render json: { puppy: @puppy, reviews: reviewArray, averageRating: averageRating   }                                                                                 
+        render json: @puppy, include: ['reviews', 'users'],  methods: :average_rating                                                                               
     end
 
     def create
@@ -46,6 +30,18 @@ class PuppiesController < ApplicationController
 
     def destroy
         @puppy.destroy
+    end
+
+    def favorite
+        favorite = Favorite.where(puppy_id: params[:puppy_id], user_id: @current_user.id)
+        if favorite.size > 0
+            favorite.delete_all
+            render json: {favorite: false}
+        else
+            fav = Favorite.new(puppy_id: params[:puppy_id], user_id: @current_user.id)
+            fav.save
+            render json: {favorite: true}
+        end
     end
 
     private

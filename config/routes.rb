@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :create
       patch :update
       delete :destroy
+      post :favorite
       end
     
     namespace :reviews, defaults:{ format: :json } do
